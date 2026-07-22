@@ -1,0 +1,210 @@
+/* ===== 全局样式 ===== */
+:root {
+  /* 高对比度配色 */
+  --color-primary: #1a73e8;
+  --color-primary-dark: #1557b0;
+  --color-text: #1f1f1f;
+  --color-text-secondary: #3c4043;
+  --color-bg: #ffffff;
+  --color-bg-soft: #f5f7fa;
+  --color-border: #d0d7de;
+  --color-success: #2e7d32;
+  --color-warning: #ed6c02;
+  --color-danger: #d32f2f;
+
+  /* 基础字体大小 16px */
+  --base-font-size: 16px;
+  --base-line-height: 1.6;
+
+  /* 控件最小高度 */
+  --control-min-height: 40px;
+
+  /* 主题色变量（默认蓝色主题：医护人员、管理员） */
+  --theme-header-bg: #242f42;
+  --theme-aside-bg: #304156;
+  --theme-menu-text: #bfcbd9;
+  --theme-menu-active: #409eff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  height: 100%;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* 按钮最小高度 40px */
+.el-button {
+  min-height: var(--control-min-height);
+}
+
+/* 表单输入框最小高度 40px */
+.el-input__wrapper,
+.el-textarea__inner,
+.el-select__wrapper {
+  min-height: var(--control-min-height);
+}
+
+.el-input__inner {
+  height: var(--control-min-height);
+  line-height: var(--control-min-height);
+}
+
+/* 修复 el-select 宽度被拉伸的问题 */
+/* Element Plus 默认 .el-select { --el-select-width:100%; width:var(--el-select-width) } */
+/* Edge 84 等旧浏览器中 width:var() 可能干扰内联 style 优先级 */
+/* 修复方式：每个 el-select 的 style 中同时设置 --el-select-width 变量，让 var() 直接解析为正确值 */
+/* 此规则作为兜底：对于未设置 --el-select-width 的 select，默认宽度为 auto */
+.el-form-item__content > .el-select {
+  --el-select-width: auto;
+  width: auto;
+}
+
+/* 内联表单额外修复：防止 form-item__content 被 flex:1 拉伸 */
+.el-form--inline .el-form-item__content {
+  flex: none !important;
+  width: fit-content !important;
+}
+
+/* ===== 适老化主题样式 ===== */
+.elderly-theme {
+  font-size: 18px;
+}
+
+.elderly-theme .el-button {
+  min-height: 52px;
+  font-size: 18px;
+  padding: 12px 24px;
+}
+
+.elderly-theme .el-input__wrapper,
+.elderly-theme .el-textarea__inner,
+.elderly-theme .el-select__wrapper {
+  min-height: 52px;
+  font-size: 18px;
+}
+
+.elderly-theme .el-input__inner {
+  height: 52px;
+  line-height: 52px;
+  font-size: 18px;
+}
+
+.elderly-theme .el-form-item__label {
+  font-size: 18px;
+}
+
+.elderly-theme .el-menu-item,
+.elderly-theme .el-sub-menu__title {
+  font-size: 18px;
+  min-height: 56px;
+  line-height: 56px;
+}
+
+.elderly-theme .el-table {
+  font-size: 17px;
+}
+
+.elderly-theme .el-table th .cell {
+  font-size: 18px;
+}
+
+/* ===== 暖橙色主题（老年用户、家属） ===== */
+.warm-theme {
+  --theme-header-bg: #6b4226;
+  --theme-aside-bg: #8b5a2b;
+  --theme-menu-text: #f5e6d3;
+  --theme-menu-active: #ffd049;
+
+  /* Element Plus 主色覆盖为橙色 */
+  --el-color-primary: #e8852c;
+  --el-color-primary-light-3: #f0a854;
+  --el-color-primary-light-5: #f4ba7a;
+  --el-color-primary-light-7: #f9d4a8;
+  --el-color-primary-light-8: #fbe0bf;
+  --el-color-primary-light-9: #fdecd6;
+  --el-color-primary-dark-2: #ba6923;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* ===== 路由切换 Loading 样式（圆圈） ===== */
+.route-loading .el-loading-spinner .circular {
+  width: 42px;
+  height: 42px;
+}
+
+.route-loading .el-loading-spinner .el-loading-text {
+  font-size: 14px;
+  color: #606266;
+  margin-top: 8px;
+}
+
+.route-loading .el-loading-spinner .path {
+  stroke: #1a73e8;
+}
+
+/* ===== 老年用户 Loading 放大样式（适老化） ===== */
+.elderly-loading .el-loading-spinner .circular {
+  width: 64px;
+  height: 64px;
+}
+
+.elderly-loading .el-loading-spinner .el-loading-text {
+  font-size: 20px;
+  color: #6b4226;
+  margin-top: 12px;
+}
+
+.elderly-loading .el-loading-spinner .path {
+  stroke: #e8852c;
+}
+
+/* ===== 家属 Loading 暖色圆圈样式 ===== */
+.warm-loading .el-loading-spinner .path {
+  stroke: #e8852c;
+}

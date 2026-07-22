@@ -1,0 +1,36 @@
+package com.elderly.health.config;
+
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * MyBatis-Plus 配置类
+ * 配置分页插件、乐观锁插件
+ *
+ * @author elderly-health
+ */
+@Configuration
+@MapperScan("com.elderly.health.mapper")
+public class MyBatisPlusConfig {
+
+    /**
+     * 配置 MyBatis-Plus 拦截器链
+     * 包含分页插件（MySQL）和乐观锁插件
+     *
+     * @return MybatisPlusInterceptor
+     */
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        // 分页插件（MySQL 数据库）
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        // 乐观锁插件
+        interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+        return interceptor;
+    }
+}
